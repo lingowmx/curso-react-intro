@@ -10,10 +10,11 @@ export const TodoItem = ({ text, isCompleted, onComplete, onDelete }) => {
       items-center pl-1 pr-1 shadow-md shadow-cyan-600">
         <span
           onClick={() => onComplete()}
-          className={`cursor-pointer ${isCompleted && "text-green-600"}`}>
-          <CheckIcon className="w-9 h-9 hover:fill-green-600" />
+          className="cursor-pointer">
+          <CheckIcon className={`w-9 h-9 ${isCompleted ? "fill-green-600" : "fill-black"} hover:fill-green-600`}/>
+          
         </span>
-        <p className={`w-72 ${isCompleted && "line-through"}`}>{text}</p>
+        <p className={`w-72 ${isCompleted ? "line-through" : ''}`}>{text}</p>
         <span
           onClick={() => onDelete()}
           className="cursor-pointer">

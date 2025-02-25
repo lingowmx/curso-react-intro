@@ -6,8 +6,6 @@ import { List } from './components/List'
 import { TodoItem } from './components/TodoItem'
 import { ButtonAddTodo } from './components/ButtonAddTodo'
 
-function App() {
-
   // const defaultTodos = [
   //   {text:"cebolla activity", isCompleted: false},
   //   {text:"Second actividy", isCompleted: false},
@@ -18,30 +16,33 @@ function App() {
 
   // localStorage.setItem('Todos_V1', JSON.stringify(defaultTodos))
   // localStorage.removeItem('Todos_V1')
-  const localStorageTodos = localStorage.getItem('Todos_V1')
-  let parsedTodos;
-  if (!localStorageTodos) {
-    localStorage.setItem('Todos_V1', JSON.stringify([]))
-    parsedTodos = []
+
+const useLocalStorage = (itemName, initialValue) => {
+  const localStorageItem = localStorage.getItem(itemName)
+  let parsedItem;
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue))
+    parsedItem = initialValue
   } else {
-    parsedTodos = JSON.parse(localStorageTodos)
+    parsedItem = JSON.parse(localStorageItem)
   }
 
-  // let parsedTodos = JSON.parse(localStorageTodos)
+  const [item, setItem] = useState(parsedItem)
 
-  
-  
+  const savedItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.
+      stringify(newItem))
+    setItem(newItem)
+  }
+  return[item, savedItem]
+}
+ //La funcion saved Todos se creo para actualizar el estado de los todos y 
+  //el local storage. por eso se usa en completeTodo y deleteTodo, se cambio
+  // a savedItem para igual con coomo lo usa local storage
+
+function App() {
+  const [todos, savedTodos] = useLocalStorage('Todos_V1', [])
   const [searchValue, setSearchValue] = useState('')
-  // console.log('Los usuarios buscaron todos de '  + searchValue)
-  const [todos, setTodos] = useState(parsedTodos)
-  
-  const savedTodos = (newTodos) => {
-    localStorage.setItem('Todos_V1', JSON.
-      stringify(newTodos))
-    setTodos(newTodos)
-  }
-  //La funcion saved Todos se creo para actualizar el estado de los todos y 
-  //el local storage. por eso se usa en completeTodo y deleteTodo
 
   const completedTodos = todos.filter(todo => !!todo.isCompleted).length
   const totalTodos = todos.length
