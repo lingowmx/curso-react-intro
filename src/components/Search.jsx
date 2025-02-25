@@ -11,7 +11,7 @@ export const Search = ({searchValue, setSearchValue}) => {
       onChange={(event) => {
         setSearchValue(event.target.value)
       }}
-      className="flex pl-4 rounded-lg" />
+      className="flex pl-4 rounded-lg w-full" />
     </div>
   )
 }

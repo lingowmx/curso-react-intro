@@ -1,13 +1,24 @@
 import PropTypes from "prop-types"
+import { CheckIcon } from '@heroicons/react/24/solid'
+import { XMarkIcon } from '@heroicons/react/24/solid'
 
-export const TodoItem = ({ text, isCompleted }) => {
+export const TodoItem = ({ text, isCompleted, onComplete, onDelete }) => {
   return (
     <>
-      <li className="w-full rounded-lg border border-black h-14 flex justify-between
-      items-center pl-2 pr-2">
-        <span className={`${isCompleted && "text-green-500"}`}>V{isCompleted}</span>
-        <p className={`"w-72 ${isCompleted && "line-through"}`}>{text}</p>
-        <span className="">X</span>
+      <li 
+      className="w-full rounded-lg border border-black h-14 flex justify-between
+      items-center pl-1 pr-1 shadow-md shadow-cyan-600">
+        <span
+          onClick={() => onComplete()}
+          className={`cursor-pointer ${isCompleted && "text-green-600"}`}>
+          <CheckIcon className="w-9 h-9 hover:fill-green-600" />
+        </span>
+        <p className={`w-72 ${isCompleted && "line-through"}`}>{text}</p>
+        <span
+          onClick={() => onDelete()}
+          className="cursor-pointer">
+          <XMarkIcon className="w-9 h-9  hover:fill-red-500" />
+        </span>
       </li>
     </>
   )
@@ -15,5 +26,7 @@ export const TodoItem = ({ text, isCompleted }) => {
 
 TodoItem.propTypes = {
   text: PropTypes.string.isRequired,
-  isCompleted: PropTypes.bool.isRequired
+  isCompleted: PropTypes.bool.isRequired,
+  onComplete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
 }
