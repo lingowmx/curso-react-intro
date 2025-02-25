@@ -5,7 +5,6 @@ import './App.css'
 import { List } from './components/List'
 import { TodoItem } from './components/TodoItem'
 import { ButtonAddTodo } from './components/ButtonAddTodo'
-import { stringify } from 'postcss'
 
 function App() {
 
@@ -30,12 +29,19 @@ function App() {
 
   // let parsedTodos = JSON.parse(localStorageTodos)
 
-
-
+  
+  
   const [searchValue, setSearchValue] = useState('')
   // console.log('Los usuarios buscaron todos de '  + searchValue)
   const [todos, setTodos] = useState(parsedTodos)
-
+  
+  const savedTodos = (newTodos) => {
+    localStorage.setItem('Todos_V1', JSON.
+      stringify(newTodos))
+    setTodos(newTodos)
+  }
+  //La funcion saved Todos se creo para actualizar el estado de los todos y 
+  //el local storage. por eso se usa en completeTodo y deleteTodo
 
   const completedTodos = todos.filter(todo => !!todo.isCompleted).length
   const totalTodos = todos.length
@@ -53,7 +59,7 @@ function App() {
       (todo) => todo.text === text
     )
     newTodos[todoIndex].isCompleted = !newTodos[todoIndex].isCompleted
-    setTodos(newTodos)
+    savedTodos(newTodos)
   }
 
   const deleteTodo = (text) => {
@@ -62,7 +68,7 @@ function App() {
       (todo) => todo.text === text
     )
     newTodos.splice(todoIndex, 1)
-    setTodos(newTodos)
+    savedTodos(newTodos)
   }
 
   return (
