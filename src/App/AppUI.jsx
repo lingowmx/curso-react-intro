@@ -12,7 +12,9 @@ export const AppUI = ({
   setSearchValue,
   searchedTodos,
   completeTodo,
-  deleteTodo
+  deleteTodo,
+  loading,
+  error,
 }) => (
     <div className='p-8 w-full h-screen flex flex-col text-center bg-yellow-50'>
       <Counter
@@ -22,6 +24,9 @@ export const AppUI = ({
         searchValue={searchValue}
         setSearchValue={setSearchValue} />
       <List>
+        {loading && <p>Loading</p>}
+        {error && <p>ERROR</p>}
+        {(!loading && searchedTodos.length === 0) && <p>Crea un TODO</p>}
         {searchedTodos.map((todo) => (
           <TodoItem
             key={todo.text}
@@ -42,5 +47,7 @@ AppUI.propTypes = {
   setSearchValue:PropTypes.string.isRequired,
   searchedTodos:PropTypes.string.isRequired,
   completeTodo:PropTypes.string.isRequired,
-  deleteTodo:PropTypes.string.isRequired
+  deleteTodo:PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error:PropTypes.bool.isRequired
 }

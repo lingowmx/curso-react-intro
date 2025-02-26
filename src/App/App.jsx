@@ -19,7 +19,12 @@ import { AppUI } from './AppUI.jsx'
   // a savedItem para igual con coomo lo usa local storage
 
 function App() {
-  const [todos, savedTodos] = useLocalStorage('Todos_V1', [])
+  const {
+    item: todos,
+    savedItem: savedTodos,
+    loading,
+    error,
+  } = useLocalStorage('Todos_V1', [])
   const [searchValue, setSearchValue] = useState('')
 
   const completedTodos = todos.filter(todo => !!todo.isCompleted).length
@@ -59,6 +64,8 @@ function App() {
     searchedTodos={searchedTodos}
     completeTodo={completeTodo}
     deleteTodo={deleteTodo}
+    loading={loading}
+    error={error}
     />
   )
 }
