@@ -8,10 +8,10 @@ export const Search = ({searchValue, setSearchValue}) => {
       type="text"
       placeholder="Search your todos"
       value={searchValue}
+      className="flex pl-4 rounded-lg w-full"
       onChange={(event) => {
         setSearchValue(event.target.value)
-      }}
-      className="flex pl-4 rounded-lg w-full" />
+      }} />
     </div>
   )
 }

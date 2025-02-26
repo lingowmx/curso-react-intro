@@ -12,7 +12,6 @@ export const TodoItem = ({ text, isCompleted, onComplete, onDelete }) => {
           onClick={() => onComplete()}
           className="cursor-pointer">
           <CheckIcon className={`w-9 h-9 ${isCompleted ? "fill-green-600" : "fill-black"} hover:fill-green-600`}/>
-          
         </span>
         <p className={`w-72 ${isCompleted ? "line-through" : ''}`}>{text}</p>
         <span
