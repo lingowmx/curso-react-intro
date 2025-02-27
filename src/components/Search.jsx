@@ -1,7 +1,12 @@
 import PropTypes from "prop-types"
+import { useContext } from "react"
+import { TodoContext } from "../Context"
 
-export const Search = ({searchValue, setSearchValue}) => {
-  
+export const Search = () => {
+  const {
+      searchValue,
+      setSearchValue,
+  } = useContext(TodoContext)
   return (
     <div className="border border-gray-400 rounded-lg">
       <input 
