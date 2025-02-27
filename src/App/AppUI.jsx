@@ -16,7 +16,9 @@ export const AppUI = () => {
     error,
     searchedTodos,
     completeTodo,
-    deleteTodo
+    deleteTodo,
+    openModal,
+    setOpenModal
   } = useContext(TodoContext)
   return (
     <div className='p-8 w-full h-screen flex flex-col text-center bg-yellow-50'>
@@ -36,6 +38,7 @@ export const AppUI = () => {
         ))}
       </List>
       <ButtonAddTodo />
+      
     </div>
   )
 }
