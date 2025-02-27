@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 import { createContext } from 'react'
 import { useLocalStorage } from './useLocalStorage'
 
@@ -58,4 +59,8 @@ export const TodoProvider = ({children}) => {
       {children}
     </TodoContext.Provider>
   )
+}
+
+TodoProvider.propTypes = {
+  children: PropTypes.string.isRequired
 }

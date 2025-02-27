@@ -8,6 +8,7 @@ import { TodosLoading } from '../components/TodosLoading'
 import { TodosError } from '../components/TodosError'
 import { EmptyTodos } from '../components/EmptyTodos'
 import { TodoContext } from '../Context'
+import { Modal } from '../components/Modal'
 import { useContext } from 'react'
 
 export const AppUI = () => {
@@ -39,6 +40,12 @@ export const AppUI = () => {
       </List>
       <ButtonAddTodo />
       
+      {openModal && (
+
+        <Modal>
+          La funcionalidad de agregar TODOs
+        </Modal>
+      )}
     </div>
   )
 }
