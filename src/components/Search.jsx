@@ -8,7 +8,7 @@ export const Search = () => {
       setSearchValue,
   } = useContext(TodoContext)
   return (
-    <div className="border border-gray-400 rounded-lg">
+    <div className="border border-gray-400 rounded-lg mt-8">
       <input 
       type="text"
       placeholder="Search your todos"
